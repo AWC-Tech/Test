@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Public Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="info">
+    <h1>Your Public Information</h1>
+    <p><strong>IP Address:</strong> <span id="ip">Loading...</span></p>
+    <p><strong>Browser:</strong> <span id="browser">Loading...</span></p>
+    <p><strong>Operating System:</strong> <span id="os">Loading...</span></p>
+    <p><strong>Screen Resolution:</strong> <span id="resolution">Loading...</span></p>
+</div>
+
+<script>
+    // Fetching IP address using a public API
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('ip').innerText = data.ip;
+        });
+
+    // Browser and OS information
+    document.getElementById('browser').innerText = navigator.userAgent;
+    document.getElementById('os').innerText = navigator.platform;
+    document.getElementById('resolution').innerText = `${window.screen.width}x${window.screen.height}`;
+</script>
+
+</body>
+</html>
